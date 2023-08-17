@@ -1,0 +1,132 @@
+/**
+ * @file      org2thml.scss
+ * @brief     SCSS version of org2html's CSS file.
+ * @author    Alexandre Martos
+ * @email     contact@amartos.fr
+ * @year      2023
+ * @copyright GPLv3
+ */
+
+@import 'variables';
+
+/* Generic classes */
+.org-right { margin-right: $org-lr-margin; }
+.org-left  { margin-left:  $org-lr-margin; }
+.org-right, .org-center    { margin-left:  auto  ; }
+.org-left,  .org-center    { margin-right: auto  ; }
+.org-right,  td.org-right  { text-align:   right ; }
+.org-left,   td.org-left   { text-align:   left  ; }
+th.org-right, th.org-left,
+.org-center, th.org-center, td.org-center { text-align:   center; }
+.underline { text-decoration: underline; }
+.org-svg {}
+
+/* Metadata */
+p.author  {}
+p.date    {}
+p.creator {}
+.title    {}
+.subtitle {}
+
+/* TODOs, timestamps and tags */
+.todo        { color: $todo-color; }
+.done        { color: $done-color; }
+.todo, .done { font-family: $todo-font-family; }
+.priority    { font-family: $priority-font-family; color: $warning; }
+.tag {
+    font-family: $tag-font-family;
+    background-color: $tag-bg-color;
+    padding: $tag-padding;
+    font-size: $tag-fs;
+    font-weight: $tag-fw;
+}
+.timestamp         { color: $timestamp-color; }
+.timestamp-kwd     { color: $timestamp-kw-color; }
+.timestamp-wrapper {}
+
+/* Equations */
+.equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+}
+.equation-label {
+    display: table-cell;
+    text-align: right;
+}
+.equation, .equation-label { vertical-align: $equation-valign; }
+
+/* Inline tasks */
+.inlinetask {
+    padding:    $inline-task-padding;
+    border:     $inline-task-border;
+    margin:     $inline-task-margin;
+    background: $inline-task-bg;
+}
+
+/* Figures and images */
+.figure   { padding:    $figure-padding; }
+.figure p { text-align: $figure-align;   }
+.figure-number {}
+
+/* Org source blocks */
+.linenr { font-size: $src-lineno-fs; }
+.code-highlighted { background-color: $src-highlight; }
+pre {
+    border: $src-border;
+    border-radius: $src-border-radius;
+    background-color: $src-bg;
+    padding: $src-padding;
+    font-family: $src-font-family;
+    margin: $src-margin;
+}
+pre, pre.src { overflow: auto; }
+pre.src { position: relative; }
+pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: $src-padding;
+    color: $src-lang-color;
+    background-color: $src-lang-bg;
+}
+pre.src:hover:before { display: inline; margin-top: 14px;}
+@each $c,$l in $languages-names { pre.src-#{$c}:before { content: #{$l}; }}
+
+/* Examples */
+pre.example {}
+
+/* Verse paragraphs */
+p.verse { margin: $verse-margin; }
+
+/* footnotes */
+.footref      {}
+.footnum      {}
+.footpara     { display: inline; }
+.footdef      { margin-bottom: 1em; }
+div.footnotes {}
+p.footnote    {}
+
+/* Tables and lists */
+.table-number {}
+.listing-number {}
+table { border-collapse: collapse; }
+caption.t-above { caption-side: top; }
+caption.t-bottom { caption-side: bottom; }
+dt { font-weight: bold; }
+
+/* Navigation */
+.target            {}
+.section-number    {}
+#table-of-contents {}
+
+/* Specific parts */
+#postamble p,
+#preamble p          { font-size: 90%; margin: .2em; }
+#org-div-home-and-up { text-align: right; font-size: 70%; white-space: nowrap; }
+
+/* JS */
+#org-info-js_console-label    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+.org-info-js_search-highlight { background-color: $org-js-highlight-bg; color: $org-js-highlight-fg; font-weight: bold; }
+.org-info-js_info-navigation  { border-style: none; }

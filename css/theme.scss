@@ -1,0 +1,34 @@
+/**
+ * @file      theme.scss
+ * @brief     Color theme for org2html's CSS file.
+ * @author    Alexandre Martos
+ * @email     contact@amartos.fr
+ * @year      2023
+ * @copyright GPLv3
+ */
+
+$red:    red;
+$green:  green;
+$orange: orange;
+$gray:   gray;
+$yellow: yellow;
+$cyan:   cyan;
+$teal:   teal;
+$black:  black;
+$white:  white;
+$cream:  beige;
+
+$text:         $black;
+$danger:       $red;
+$valid:        $green;
+$info:         $cyan;
+$special:      $cream;
+$warning:      $orange;
+$highlight:    $yellow;
+$box-bg:       $white;
+$info:         $teal;
+$info-kw:      $cyan;
+$border-color: $gray;
+$alt-bg:       $white;
+$faint-color:  $gray;
+$faint-bg:     $white;

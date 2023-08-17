@@ -1,0 +1,122 @@
+#+title: org2html - An Org mode files converter for cgit
+#+author: Alexandre Martos
+
+The =org2html= script brings support for [[https://orgmode.org/][Org mode]] formatted =about= files
+to [[https://git.zx2c4.com/cgit/][cgit]]. For more informations on =cgit='s =about= fiters, see the
+=cgitrc(5)= manual.
+
+* Installation
+
+** Dependencies
+
+The script depends on the =sha256sum= command and Emacs 28+ (the true
+minimum version depends on the minimum version needed for your Org
+files).
+
+No Emacs configuration is needed (the script uses Emacs' =-Q= flag
+anyway). Should yould need to execute code blocks before export, use
+local variables to set =org-confirm-babel-evaluate= to =nil=:
+
+#+begin_src org
+# ...
+# At the end of the document (those *must* be the last lines)
+
+,* COMMENT Local Variables
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:
+#+end_src
+
+No, the script does *not* set this variable to =nil= on export, and you
+should not modify it to do so. This behavior is utterly unsafe, and
+thus will not be implemented.
+
+** Install procedure
+
+To install, clone the repo:
+
+#+begin_src bash
+git clone https://github.com/amartos/cgit-org2html org2html
+#+end_src
+
+Then modify the =about-filter= script to use =org2html= for Org files.
+
+The modifications of =cgit='s =about-formatting.sh= would be (substitute
+the script's path for the real one):
+
+#+begin_src diff
+ #...
+ case "${EXTENSION}" in
++    .org) path/to/org2html; ;;
+     #...
+ esac
+#+end_src
+
+To /also/ render tree's blobs in CGit, see this [[https://gist.github.com/amartos/fbfa82af4ff33823c90acbf23f7a3f0e][gist]].
+
+* Output
+
+** Conversion
+
+The script only outputs the body of the converted HTML files, thus
+ignores any =#+HTML_HEAD= and similar attributes (affecting other parts
+of the HTML file than the body itself).
+
+** Page conversion/load speed
+
+The first time you visit the =about= page and every
+time the corresponding file changes the conversion may take some time
+(at least a few seconds), depending on your system. Org mode is indeed
+a huge library to load, even alone.
+
+As a workaround, the script uses a cache system (hence the =sha256sum=
+dependency) to improve speed for each visit after the last
+compilation if the file did not change in the meantime.
+The caches files are located at
+=$CGIT_CACHE_ROOT/org2html/$CGIT_REPO_NAME/.=
+
+** CSS support
+
+The CSS defaults are listed in the =css/org2html.css= file (=scss= format
+is available if you want to easily modify it).
+
+The script locates the CSS file at =/usr/share/cgit/css/org2html.css= as
+a default. To change the path, you can set the =ORG2HTML_CSS_PATH=
+environment variable to the CSS file's real path.
+
+* Roadmap
+
+- [X] support for Org about pages rendering
+- [X] generate default CSS through SCSS
+- [ ] better cache handling for edge cases
+- [ ] use more and better SCSS variables and less hardcoded CSS values
+- [ ] define better CSS defaults
+
+* Code generators                                                  :noexport:
+
+#+name: css header
+#+begin_example css
+/**
+ ,* @file      org2html.css
+ ,* @brief     Default CSS sheet for org2html
+ ,* @author    Alexandre Martos
+ ,* @email     contact@amartos.fr
+ ,* @year      2023
+ ,* @copyright GPLv3
+ ,*
+ ,* The location for this sheet should default to
+ ,* /usr/share/cgit/css/org2html.css. Set its new location in the
+ ,* ORG2HTML_CSS_PATH environment variable if not.
+ ,*/
+#+end_example
+
+#+begin_src bash :noweb yes :results silent
+  echo -n "\
+  <<css header()>>" > css/org2html.css
+  node-sass --output-style compressed css/org2html.scss >> css/org2html.css
+#+end_src
+
+* COMMENT Local variables
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:

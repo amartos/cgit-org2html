@@ -1,0 +1,131 @@
+/*
+ * @file      variables.scss
+ * @brief     Variables used for org2html's CSS file.
+ * @author    Alexandre Martos
+ * @email     contact@amartos.fr
+ * @year      2023
+ * @copyright GPLv3
+ */
+
+@import 'theme';
+
+$todo-font-family:     monospace;
+$todo-color:           $danger;
+$done-color:           $valid;
+$priority-font-family: $todo-font-family;
+$tag-font-family:      $todo-font-family;
+$tag-bg-color:         $box-bg;
+$tag-padding:          2px;
+$tag-fs:               80%;
+$tag-fw:               normal;
+$inline-task-padding:  10px;
+$inline-task-border:   2px solid $gray;
+$inline-task-margin:   10px;
+$inline-task-bg:       $special;
+$figure-padding:       1em;
+$figure-align:         center;
+$src-font-family:      $todo-font-family;
+$src-border:           1px solid $border-color;
+$src-bg:               $alt-bg;
+$src-lang-color:       $faint-color;
+$src-lang-bg:          $faint-bg;
+$src-lineno-fs:        smaller;
+$src-highlight:        $highlight;
+$src-border-radius:    3px;
+$src-margin:           1.2em;
+$src-padding:          8pt;
+$verse-margin:         3% 0 0;
+$org-js-highlight-bg:  $highlight;
+$org-js-highlight-fg:  $text;
+$timestamp-color:      $info;
+$timestamp-kw-color:   $info-kw;
+$equation-valign:      middle;
+$org-lr-margin:        0px;
+$languages-names: (
+    C: 'C',
+    c: 'C',
+    D: 'D',
+    d: 'D',
+    J: 'J',
+    j: 'J',
+    R: 'R',
+    r: 'R',
+    abc: 'ABC',
+    ada: 'Ada',
+    ash: 'ash',
+    asm: 'Assembler',
+    asymptote: 'Asymptote',
+    authinfo: 'Authinfo',
+    awk: 'Awk',
+    bash: 'bash',
+    calc: 'Emacs Calc',
+    caml: 'Caml',
+    clojure: 'Clojure',
+    conf: 'Configuration File',
+    coq: 'Coq',
+    cpp: 'C++',
+    csh: 'csh',
+    css: 'CSS',
+    dash: 'dash',
+    delphi: 'Delphi',
+    ditaa: 'ditaa',
+    dot: 'Graphviz',
+    ebnf2ps: 'ebfn2ps',
+    emacs-lisp: 'Emacs Lisp',
+    forth: 'Forth',
+    fortran: 'Fortran',
+    gnuplot: 'gnuplot',
+    groovy: 'Groovy',
+    haskell: 'Haskell',
+    hledger: 'hledger',
+    html: 'HTML',
+    idl: 'IDL',
+    io: 'IO',
+    java: 'Java',
+    js: 'Javascript',
+    ksh: 'ksh',
+    latex: 'LaTeX',
+    ledger: 'Ledger',
+    lilypond: 'Lilypond',
+    lisp: 'Lisp',
+    lua: 'Lua',
+    makefile: 'Makefile',
+    matlab: 'MATLAB',
+    maxima: 'Maxima',
+    mercury: 'Mercury',
+    metapost: 'MetaPost',
+    mksh: 'mksh',
+    modula-2: 'Modula-2',
+    mscgen: 'Mscgen',
+    nxml: 'XML',
+    ocaml: 'Objective Caml',
+    octave: 'Octave',
+    org: 'Org mode',
+    oz: 'OZ',
+    pascal: 'Pascal',
+    perl: 'Perl',
+    picolisp: 'Pico Lisp',
+    plain-tex: 'Plain TeX',
+    plantuml: 'Plantuml',
+    posh: 'posh',
+    processing: 'Processing.js',
+    prolog: 'Prolog',
+    ps: 'PostScript',
+    python: 'Python',
+    ruby: 'Ruby',
+    sass: 'Sass',
+    scala: 'Scala',
+    scheme: 'Scheme',
+    screen: 'Gnu Screen',
+    sed: 'Sed',
+    sh: 'shell',
+    shell: 'Shell Script',
+    simula: 'Simula',
+    sql: 'SQL',
+    sqlite: 'SQLite',
+    tcl: 'tcl',
+    tex: 'TeX',
+    verilog: 'Verilog',
+    vhdl: 'VHDL',
+    xml: 'XML',
+);

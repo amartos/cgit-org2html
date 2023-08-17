@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# @file      org2html
+# @brief     Org mode files support for CGit's about pages.
+# @author    Alexandre Martos
+# @email     contact@amartos.fr
+# @year      2023
+# @copyright GPLv3
+#
+# Usage: org2html [FILE.org] < FILE.org
+#
+# The first parameter, if given, is used as the cache's file name (defaults to
+# "about.org"). The Org file content is passed through stdin.
+#
+# The script expects a CSS file located at $ORG2HTML_CSS_PATH
+# (defaults to /usr/share/cgit/css/org2html.css).
+
+CONFIG="${CGIT_CONFIG:-/etc/cgitrc}"
+CACHE_ROOT=$(awk 'BEGIN {FS="="} /^cache-root/ {print $2}' "$CONFIG")
+CACHE="${CACHE_ROOT:-/var/cache/cgit}/org2html/$CGIT_REPO_NAME"
+ORG="$CACHE/${1:-about.org}"
+HTML="$CACHE/$(basename $FILE .org).html"
+HASH="$CACHE/SHA256SUMS"
+CSS="<script>$(cat ${ORG2HTML_CSS_PATH:-/usr/share/cgit/css/org2html.css})</script>"
+
+mkdir -p "$CACHE"
+cat > "$ORG"
+sha256sum --quiet --ignore-missing --status -c "$HASH"
+SUM=$?
+
+if [ ! -f "$HTML" -o "$SUM" -ne "0" ]
+then
+  emacs "$ORG" -Q --batch --eval "(progn
+  (require 'org)
+  (setq org-export-show-temporary-export-buffer t)
+  (org-html-export-as-html nil nil nil t nil)
+  (beginning-of-buffer)
+  (insert \"$CSS\")
+  (princ (buffer-string))
+  )" 2>/dev/null 1>"$HTML"
+  sha256sum "$CACHE/*.org" > "$HASH"
+fi
+
+cat "$HTML"
