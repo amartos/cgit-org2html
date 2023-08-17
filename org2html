@@ -21,7 +21,7 @@ CACHE="${CACHE_ROOT:-/var/cache/cgit}/org2html/$CGIT_REPO_NAME"
 ORG="$CACHE/${1:-about.org}"
 HTML="$CACHE/$(basename $ORG .org).html"
 HASH="$CACHE/SHA256SUMS"
-CSS="<script>$(cat ${ORG2HTML_CSS_PATH:-/usr/share/cgit/css/org2html.css})</script>"
+CSS="<style>$(cat ${ORG2HTML_CSS_PATH:-/usr/share/cgit/css/org2html.css})</style>"
 
 mkdir -p "$CACHE"
 cat > "$ORG"
