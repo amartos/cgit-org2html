@@ -1,5 +1,6 @@
 #+title: org2html - An Org mode files converter for cgit
 #+author: Alexandre Martos
+#+export_exclude_tags: noexport
 
 The =org2html= script brings support for [[https://orgmode.org/][Org mode]] formatted =about= files
 to [[https://git.zx2c4.com/cgit/][cgit]]. For more informations on =cgit='s =about= fiters, see the
