@@ -38,7 +38,7 @@ then
   (insert \"$CSS\")
   (princ (buffer-string))
   )" 2>/dev/null 1>"$HTML"
-  sha256sum "$CACHE/*.org" > "$HASH"
+  sha256sum "$CACHE"/*.org >"$HASH"
 fi
 
 cat "$HTML"
