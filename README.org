@@ -60,26 +60,26 @@ To /also/ render tree's blobs in CGit, see this [[https://gist.github.com/amarto
 ** Conversion
 
 The script only outputs the body of the converted HTML files, thus
-ignores any =#+HTML_HEAD= and similar attributes (affecting other parts
-of the HTML file than the body itself).
+ignores any =#+HTML_HEAD= and similar attributes affecting other parts
+of the HTML file than the body itself.
 
 ** Page conversion/load speed
 
-The first time you visit the =about= page and every
-time the corresponding file changes the conversion may take some time
-(at least a few seconds), depending on your system. Org mode is indeed
-a huge library to load, even alone.
+The first time you visit the =about= page, and every time the
+corresponding file changes, the conversion may take some time (at
+least a few seconds) depending on your system. Org mode is indeed a
+huge library to load, even alone.
 
 As a workaround, the script uses a cache system (hence the =sha256sum=
 dependency) to improve speed for each visit after the last
-compilation if the file did not change in the meantime.
-The caches files are located at
-=$CGIT_CACHE_ROOT/org2html/$CGIT_REPO_NAME/.=
+compilation -- if the file did not change in the meantime.
+The cache files are located at
+=$CGIT_CACHE_ROOT/org2html/$CGIT_REPO_NAME/=.
 
 ** CSS support
 
-The CSS defaults are listed in the =css/org2html.css= file (=scss= format
-is available if you want to easily modify it).
+The CSS defaults are listed in the =css/org2html.css= file (=scss= files
+are available if you want to easily modify it).
 
 The script locates the CSS file at =/usr/share/cgit/css/org2html.css= as
 a default. To change the path, you can set the =ORG2HTML_CSS_PATH=
