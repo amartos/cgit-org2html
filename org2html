@@ -23,7 +23,7 @@ HTML="$CACHE/$(basename $ORG .org).html"
 HASH="$CACHE/SHA256SUMS"
 CSS="<style>$(cat ${ORG2HTML_CSS_PATH:-/usr/share/cgit/css/org2html.css})</style>"
 
-mkdir -p "$CACHE"
+mkdir -p "$(dirname $ORG)"
 cat > "$ORG"
 sha256sum --quiet --ignore-missing --status -c "$HASH"
 SUM=$?
